@@ -1,0 +1,133 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:layout="sap.ui.layout"
+  xmlns:form="sap.ui.layout.form"
+  xmlns:core="sap.ui.core"
+  controllerName="proyectofinal.proyectofinal.controller.main">
+
+  <ScrollContainer
+    vertical="true"
+    horizontal="false"
+    height="100%"
+    width="100%">
+
+    <VBox id="_IDGenVBox" class="sapUiSmallMargin">
+
+      <!-- Personal Information -->
+      <form:SimpleForm id="personalForm" editable="true" title="Personal Information" layout="ResponsiveGridLayout" columnsM="1">
+        <Label text="ID*" />
+        <Input id="idInput" required="true" />
+
+        <Label text="Type Document*" />
+        <Select id="typeDocumentSelect" required="true">
+          <items>
+            <core:Item key="V" text="V" />
+            <core:Item key="E" text="E" />
+          </items>
+        </Select>
+
+        <Label text="Number Document*" />
+        <Input id="numberDocumentInput" required="true"/>
+
+        <Label text="First Name*" />
+        <Input id="firstNameInput" required="true" />
+
+        <Label text="Last Name*" />
+        <Input id="lastNameInput" required="true" />
+
+        <Label text="Birth Date*" />
+        <DatePicker id="birthDatePicker" required="true" />
+      </form:SimpleForm>
+
+      <!-- Other Information -->
+      <form:SimpleForm id="otherInfoForm" title="Other Information" editable="true" layout="ResponsiveGridLayout" columnsM="2">
+        <Label text="Place Birth*" />
+        <Input id="placeBirthInput" required="true" />
+
+        <Label text="Nationality*" />
+        <Input id="nationalityInput" required="true" />
+
+        <Label text="Genre*" />
+        <Select id="genreSelect" required="true">
+          <items>
+            <core:Item key="Masculino" text="Masculino" />
+            <core:Item key="Femenino" text="Femenino" />
+          </items>
+        </Select>
+
+        <Label text="Civil Status*" />
+        <Select id="civilStatusSelect" required="true">
+          <items>
+            <core:Item key="Soltero" text="Soltero" />
+            <core:Item key="Casado" text="Casado" />
+          </items>
+        </Select>
+      </form:SimpleForm>
+
+      <!-- Address Information -->
+      <form:SimpleForm title="Address Information" editable="true" layout="ResponsiveGridLayout">
+        <Label text="Country*" />
+        <Input id="countryInput" required="true" />
+
+        <Label text="Province*" />
+        <Input id="provinceInput" required="true" />
+
+        <Label text="Region*" />
+        <Input id="regionInput" required="true" />
+
+        <Label text="Address*" />
+        <Input id="addressInput" required="true" />
+
+        <Label text="Postal Code*" />
+        <Input id="postalCodeInput" required="true" />
+      </form:SimpleForm>
+
+      <!-- Contact Information -->
+      <form:SimpleForm title="Contact Information" editable="true" layout="ResponsiveGridLayout">
+        <Label text="Phone Number*" />
+        <Input id="phoneInput" required="true" />
+
+        <Label text="Email*" />
+        <Input id="emailInput" required="true" />
+      </form:SimpleForm>
+
+      <!-- Buttons -->
+      <HBox class="sapUiSmallMarginTop">
+        <Button text="Save" type="Emphasized" press="onSavePress" />
+        <Button text="Clear" type="Reject" press="onClearPress" class="sapUiTinyMarginBegin" />
+        <Button text="Exportar a JSON" press="onExportPress" />
+      </HBox>
+
+      <!-- Table -->
+      <VBox id="tableBox" class="sapUiSmallMarginTop">
+        <Table id="userTable" items="{/users}" growing="true" growingScrollToLoad="true">
+          <columns>
+            <Column><Text text="Number Document" /></Column>
+            <Column><Text text="Full Name" /></Column>
+            <Column><Text text="Birth Date" /></Column>
+            <Column><Text text="Place Birth" /></Column>
+            <Column><Text text="Nationality" /></Column>
+            <Column><Text text="Genre" /></Column>
+            <Column><Text text="Civil Status" /></Column>
+          </columns>
+          <items>
+            <ColumnListItem>
+              <cells>
+                <Text text="{numberDocument}" />
+                <Text text="{firstName} {lastName}" />
+                <Text text="{= ${birthDate} ? ${birthDate} : 'N/A'}" />
+                <Text text="{placeBirth}" />
+                <Text text="{nationality}" />
+                <Text text="{genre}" />
+                <Text text="{civilStatus}" />
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </VBox>
+
+    </VBox>
+
+  </ScrollContainer>
+</mvc:View>
